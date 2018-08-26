@@ -441,20 +441,6 @@
         }
 
       });
-      // $(window).on("keypress", function (event) {
-
-      //   if (event.keyCode == "27") {
-      //     event.preventDefault();
-      //     if ($gd.currentRowHTML != null) {
-      //       $(".gdtable").find("tr.gd-editingrow").each(function () {
-      //         $(this).removeClass("gd-editingrow gd-nopad").html($gd.currentRowHTML);
-      //         $gd.currentRow = null;
-      //         $gd.currentRowHTML = "";
-      //       });
-      //     }
-      //   }
-
-      // });
 
     }); // End of this.each processing
 
