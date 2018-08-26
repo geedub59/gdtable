@@ -1,0 +1,107 @@
+/*------------------------------------------------------
+  Colours, etc.
+------------------------------------------------------*/
+$gd-bg: rgba(0,0,0, 0.25); // Default
+$gd-border: rgba(0,0,0, 0.75); // Default
+
+/*------------------------------------------------------
+  HTML, BODY
+------------------------------------------------------*/
+html,
+body {
+  height: 100%;
+  padding: 5px;
+  font-size: 0.9rem;
+}
+
+/*------------------------------------------------------
+  Table container code
+------------------------------------------------------*/
+#bigbox {
+  display: flex !important;
+  flex-direction: column !important;
+  flex-wrap: wrap;
+  height: 100% !important;
+  border: 1px solid $gd-border;
+  padding: 4px;
+}
+
+#titlerow {
+  height: 50px;
+  border: 3px groove $gd-border;
+  margin: 0px 0px !important;
+  background-color: $gd-bg;
+}
+
+#datarow {
+  display: flex !important;
+  flex: 1 !important;
+  overflow: hidden !important;
+  margin: 0px 0px !important;
+  border: 3px groove $gd-border;
+}
+
+#footerrow {
+  height: 30px;
+  border: 3px groove $gd-border;
+  margin: 0px 0px !important;
+  background-color: $gd-bg;
+}
+
+.menucol {
+  flex: 1 !important;
+  margin: 6px 10px 7px 10px;
+  text-align: center;
+  span {
+    white-space: nowrap; 
+    overflow-x: hidden;
+  }
+  @media screen and (max-width: 360px) {
+    margin: 10px 10px 7px 10px;
+    span {
+      font-size: 1.2rem
+    }
+  }
+}
+
+.datacol {
+  height: 100% !important;
+  flex: 1 !important;
+  overflow: hidden !important;
+  border: 1px solid $gd-border;
+  padding: 0px 0px;
+}
+
+.footercol {
+  flex: 1 !important;
+  margin: 0px 10px 5px 10px;
+  text-align: center;
+  @media screen and (max-width: 360px) {
+    margin: 1px 10px 7px 10px;
+    span {
+      font-size: 1.0rem
+    }
+  }
+}
+
+/*------------------------------------------------------
+  Tooltip formatting (tooltipster)
+------------------------------------------------------*/
+
+.gd-tooltip {
+  position: absolute;
+  overflow: hidden;
+  z-index: 100;
+  background-color: #f9f9f9;
+  border: 1px solid #cccccc;
+  padding: 2px 0px;
+  -moz-box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.5);
+  box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.5);
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  margin: 0px 7px 7px 0px;
+}
