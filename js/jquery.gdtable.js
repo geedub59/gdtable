@@ -177,8 +177,8 @@
         // and add markup to handle the ellipsis code
         for (var x = 0; x < settings.colEllipsis.length; x++) {
           var $td = $(this).find("td").slice(settings.colEllipsis[x], settings.colEllipsis[x] + 1);
-          $td.attr("title", $td.text());
-          $td.html("<span class='ellipsis'>" + $td.html() + "</span>")
+          tempText = $td.text();
+          $td.html("<span class='ellipsis'>" + tempText + "</span>")
           $td.addClass("ellipsis");
         }
 
@@ -425,7 +425,7 @@
 
         if (event.keyCode == "27") {
           $(".gdtable").each(function () {
-            var $gdtable =  $(this);
+            var $gdtable = $(this);
             $gd.currentRowHTML = $gdtable.data(gdPrefix + "currentrowhtml");
             if ($gd.currentRowHTML != null) {
               $gdtable.find("tr.gd-editingrow").each(function () {
@@ -457,13 +457,10 @@
   }
 
 
-
-
   ///////////////////////////////////////////////
   // ADDITIONAL FUNCTIONS
   ///////////////////////////////////////////////
   $.fn.gdzebra = function () {
-
     this.find("tbody tr").removeClass("gd-even gd-odd");
     this.find("tbody tr").filter(":visible").filter(":even").addClass("gd-odd");
     this.find("tbody tr").filter(":visible").filter(":odd").addClass("gd-even");
