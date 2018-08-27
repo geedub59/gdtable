@@ -10,6 +10,29 @@ $(document).ready(function () {
     filterDelay: 500
   }).gdzebra();
 
+  // setup tooltips for specific columns
+  $("#ima_gdtable1").gdtooltip({
+    colToolTip: [1, 5],
+    toolTipDelay: 500,
+    toolTipHold: 1000
+  });
+  
+  $(".gdtooltip").on("mouseenter", function () {
+    if ($(this).data("tooltip") !== undefined) {
+      var tooltipSpan = '<span class="gdtooltipSpan">' + $(this).data("tooltip") + '</span>';
+      $(this).append(tooltipSpan);
+      $(this).find(".gdtooltipSpan").css({
+        "top": "0px",
+        "left": "0px"
+        // "width": $(this).width()*1.2
+      }).show("fast");
+    }
+  });
+
+  $(".gdtooltip").on("mouseleave", function () {
+    $(this).find(".gdtooltipSpan").remove();
+  });
+
   $("#ima_gdtable1").tablesorter({
 
       // set initial sort column and direction
@@ -44,5 +67,5 @@ $(document).ready(function () {
     });
 
   $(window).trigger("resize");
-
+  
 });

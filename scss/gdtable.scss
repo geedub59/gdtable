@@ -112,6 +112,9 @@ $gd-border: rgba(0,0,0, 0.75); // Default
           white-space: nowrap !important;
           overflow: hidden !important;
           text-overflow: ellipsis !important;
+          // &:hover {
+          //   overflow: visible;
+          // }
         }
       }
     }
@@ -160,7 +163,10 @@ $gd-border: rgba(0,0,0, 0.75); // Default
             padding-right: 3px;
             padding-bottom: 0px;
             text-align: left;
-          }
+            // &:hover {
+            //   overflow: visible;
+            // }
+  }
         }
       }
     }
