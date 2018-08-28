@@ -112,9 +112,6 @@ $gd-border: rgba(0,0,0, 0.75); // Default
           white-space: nowrap !important;
           overflow: hidden !important;
           text-overflow: ellipsis !important;
-          // &:hover {
-          //   overflow: visible;
-          // }
         }
       }
     }
@@ -130,6 +127,7 @@ $gd-border: rgba(0,0,0, 0.75); // Default
         padding-right: 3px;
         padding-bottom: 0px;
         text-align: left;
+        cursor: default;
         &:last-child {
           border-right: 1px lightslategray solid;
         }
@@ -163,9 +161,6 @@ $gd-border: rgba(0,0,0, 0.75); // Default
             padding-right: 3px;
             padding-bottom: 0px;
             text-align: left;
-            // &:hover {
-            //   overflow: visible;
-            // }
   }
         }
       }
@@ -199,8 +194,6 @@ $gd-border: rgba(0,0,0, 0.75); // Default
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   border-radius: 5px;
-  /* border-top-left-radius: 0px;
-  border-bottom-left-radius: 0px; */
   margin: 0px 7px 7px 0px;
   ul {
     list-style: none;

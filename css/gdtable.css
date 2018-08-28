@@ -100,7 +100,8 @@
       padding-left: 3px;
       padding-right: 3px;
       padding-bottom: 0px;
-      text-align: left; }
+      text-align: left;
+      cursor: default; }
       .gdtable tbody tr td:last-child {
         border-right: 1px lightslategray solid; }
       .gdtable tbody tr td.gd-rowactionicon {
@@ -151,8 +152,6 @@
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   border-radius: 5px;
-  /* border-top-left-radius: 0px;
-  border-bottom-left-radius: 0px; */
   margin: 0px 7px 7px 0px; }
   .gd-menucontainer ul {
     list-style: none;
