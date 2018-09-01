@@ -151,8 +151,8 @@
 
       //////////////////////////////////////////////////////
 
-      // add the gdtable and gtableV2 classes to the selected table
-      $gdtable.addClass("gdtable gdtableV2");
+      // add the gdtable class to the selected table
+      $gdtable.addClass("gdtable");
 
       // *************************************
       $gdtable.find("thead .gd-scrollbarrow").prepend("<th>&nbsp;</th>");
