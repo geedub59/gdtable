@@ -156,15 +156,17 @@
       filterText = filterText.replace(/\s/g, "");
 
       if (filterText != "") {
+
         var filterOp = filterText.slice(0, 1);
+
         var filterNot = false;
         if (filterOp == "!") {
           filterText = filterText.slice(1, filterText.length);
           filterNot = true;
         }
+
         var filterMaths = false;
         if (filterOp == ">" || filterOp == "<") {
-          filterText = filterText.slice(1, filterText.length);
           filterMaths = true;
         }
 
@@ -174,11 +176,66 @@
           // get the data column for the current filter column
           $(this).find("td").slice(filterColumn, filterColumn + 1).filter(function () {
 
+
             if (filterMaths) {
 
-              // numerical comparison
-              var mathExp = "0" + $(this).text() + filterOp + filterText;
-              return !(math.eval(mathExp));
+              var ampFound = filterText.indexOf("&");
+              var orFound = filterText.indexOf("|");
+              var filterTextArr = [];
+              var fOp = "";
+              var fText = "";
+
+              if (ampFound > -1) {
+
+                filterTextArr.push(filterText.slice(0, ampFound));
+                var resOne = false;
+                var fOp = filterTextArr[0].slice(0, 1);
+                if (fOp == ">" || fOp == "<") {
+                  fText = filterTextArr[0].slice(1, filterTextArr[0].length);
+                  var mathExp = "0" + $(this).text() + fOp + fText; // e.g. 2000>2500
+                  resOne = math.eval(mathExp);
+                }
+
+                filterTextArr.push(filterText.slice(ampFound + 1, filterText.length));
+                var resTwo = false;
+                fOp = filterTextArr[1].slice(0, 1);
+                if (fOp == ">" || fOp == "<") {
+                  fText = filterTextArr[1].slice(1, filterTextArr[1].length);
+                  var mathExp2 = "0" + $(this).text() + fOp + fText; // e.g. 2000>2500
+                  resTwo = math.eval(mathExp2);
+                }
+                return !(resOne && resTwo);
+
+              } else if (orFound > -1) {
+
+                filterTextArr.push(filterText.slice(0, orFound));
+                var resOne = false;
+                var fOp = filterTextArr[0].slice(0, 1);
+                if (fOp == ">" || fOp == "<") {
+                  fText = filterTextArr[0].slice(1, filterTextArr[0].length);
+                  var mathExp = "0" + $(this).text() + fOp + fText; // e.g. 2000>2500
+                  resOne = math.eval(mathExp);
+                }
+
+                filterTextArr.push(filterText.slice(orFound + 1, filterText.length));
+                var resTwo = false;
+                fOp = filterTextArr[1].slice(0, 1);
+                if (fOp == ">" || fOp == "<") {
+                  fText = filterTextArr[1].slice(1, filterTextArr[1].length);
+                  var mathExp2 = "0" + $(this).text() + fOp + fText; // e.g. 2000>2500
+                  resTwo = math.eval(mathExp2);
+                }
+
+                return !(resOne || resTwo);
+
+              } else {
+
+                fOp = filterText.slice(0, 1);
+                fText = filterText.slice(1, filterText.length);
+                var mathExp = "0" + $(this).text() + fOp + fText; // e.g. 2000>2500
+                return !(math.eval(mathExp));
+
+              }
 
             } else {
 
@@ -193,6 +250,7 @@
                 return ($(this).text().toLowerCase().match(rgxp) === null);
 
               }
+
             }
 
           }).parent().removeClass("gd-keep");

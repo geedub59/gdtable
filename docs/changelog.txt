@@ -1,0 +1,12 @@
+TODO
+====
+
+2. 20180903 - Remove inline editing
+3. 20180903 - Save active filters when the filter row is closed and display them when it is openened again
+4. 20180903 - Make sure the popup menu when a row is selected displays within the table area
+
+
+
+COMPLETED
+=========
+20180903 - Added help form for filtering; enhanced filter ability

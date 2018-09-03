@@ -13,9 +13,42 @@
       currentRow: null,
       currentRowHTML: "",
       lastScrollTop: 0,
-      rowActionMenu: "<div class='gd-rowactionmenu gd-menucontainer' style='position: absolute; display: none;'><ul><li class='gd-menuedit'>Edit</li><li class='gd-menudelete'>Delete</li><li class='gd-menuinsert'>Insert Before</li><li class='gd-menuadd'>Add After</li></ul></div>",
-      filterMenu: "<div class='gd-filtermenu gd-menucontainer' style='position: absolute; display: none;'><ul><li class='gd-filterclear'>Clear All</li><li class='gd-filterA'>A</li><li class='gd-filterB'>B</li><li class='gd-filterC'>C</li></ul></div>"
-    }
+      rowActionMenu: "<div class='gd-rowactionmenu gd-menucontainer' style='position: absolute; display: none;'>\
+                        <ul>\
+                          <li class='gd-menuedit'>Edit</li>\
+                          <li class='gd-menudelete'>Delete</li>\
+                          <li class='gd-menuinsert'>Insert Before</li>\
+                          <li class='gd-menuadd'>Add After</li>\
+                        </ul>\
+                      </div>",
+      filterMenu: "<div class='gd-filtermenu gd-menucontainer' style='position: absolute; display: none;'>\
+                      <ul>\
+                        <li class='gd-filterclear'>Clear All</li>\
+                        <li class='gd-filterhelp'>Help</li>\
+                        <li class='gd-filterB'>B</li>\
+                        <li class='gd-filterC'>C</li>\
+                      </ul>\
+                    </div>",
+      filterHelp: "<div class='gd-filterhelp gd-menucontainer' style='position: absolute; display: none;'>\
+                      <ul>\
+                        <li>&nbsp;</li>\
+                        <li>use <b>^</b> to select starting characters; e.g. <b>^ab</b> will find ABERDEEN but will excude AWABA</li>\
+                        <li>&nbsp;</li>\
+                        <li>use <b>$</b> to select ending characters; e.g. <b>nt$</b> will find ASHMONT but will exclude ANTWERP</li>\
+                        <li>&nbsp;</li>\
+                        <li>use <b>!</b> to exclude the following characters; e.g. <b>!vic</b> will exclude Victoria</li>\
+                        <li>&nbsp;</li>\
+                        <li>use <b>&gt;</b> with numeric fields; e.g. <b>&gt;2000</b> will exclude values of 2000 or less</li>\
+                        <li>&nbsp;</li>\
+                        <li>use <b>&lt;</b> with numberic fields; e.g. <b>&lt;3000</b> will exclude values greater than 3000</li>\
+                        <li>&nbsp;</li>\
+                        <li>use <b>|</b> for multiple <b>'or'</b> filters with both numbers and letters</li>\
+                        <li>&nbsp;</li>\
+                        <li>use <b>&amp;</b> for multiple <b>'and'</b> filters with numbers only; e.g. <b>&gt; 2000 &amp; &lt; 2200</li>\
+                        <li>&nbsp;</li>\
+                      </ul>\
+                    </div>"
+}
 
     function debounce(func, wait, immediate) {
       var timeout;
@@ -303,6 +336,26 @@
 
       });
 
+      // capture a click on "gd-filterhelp" from the row menu
+      $(".gdtable").on("click", ".gd-filterhelp", function (event) {
+
+        // get the top and left for the cell clicked
+        var pos = $(this).position();
+        var top = pos.top + 10;
+        var left = pos.left + 15;
+
+        // insert the filter menu into the DOM
+        $gdtable.append($gd.filterHelp);
+        // set positions and show the menu
+        $gdtable.find(".gd-filterhelp").css("top", top).css("left", left).show();
+
+
+        // stop propagation
+        event.stopImmediatePropagation();
+
+      });
+
+
       // capture click on row menu icon to edit / delete / add, etc.
       $(".gdtable tbody").on("click", "tr td.gd-rowactionicon", function (event) {
 
@@ -387,7 +440,7 @@
       $(".gdtable").on("click", function (event) {
 
         $gdtable = $(this);
-        $gdtable.find(".gd-rowactionmenu, .gd-filtermenu").remove();
+        $gdtable.find(".gd-rowactionmenu, .gd-filtermenu, .gd-filterhelp").remove();
         $gdtable.find("tbody tr").each(function () {
           $(this).removeClass("gdeditrow");
         });
